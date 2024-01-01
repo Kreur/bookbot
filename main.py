@@ -1,19 +1,27 @@
 def main():
-    book_path = "books/frankenstein.txt"
-    book_text = get_file_text(book_path)    
+    book_path = "books/frankenstein.txt"  
+    generate_report(book_path)
+
+
+
+
+def generate_report(path):
+    print("------------------- report start ----------------------")
+    print("")
+    book_text = get_file_text(path)    
     book_words = text_to_words(book_text)
-    print(f"Text contains {len(book_words)} words.")
+    word_count = len(book_words)    
+    print(f"file {path} contains {word_count} words.")
+    print("")
+    print("characters occur in following frequncy: (case insensitive)")
     char_counts = count_characters(book_text)
-    print(f"Frequency of characters in text: {char_counts}")
+    for entry in char_counts:
+        if entry.isalpha():
+            print(f"character: {entry} frequency: {char_counts[entry]}")
+    print("")
+    print("--------------------- report end ----------------------")
 
-
-
-
-
-
-
-
-def count_characters(string): #out dictionary str -> int
+def count_characters(string): #out dict: str -> int
     count_dict = {}
     lcase_input = string.lower()
     
